@@ -276,8 +276,8 @@ def convert_bookmarks_to_html(bookmarks: dict) -> str:
         indent: str = "\t" * level
         for item in d:
             if item["type"] == "folder":
-                # We want to start at H2, because H1 is the page title
-                tag = "H" + str(level + 1)
+                # We want to start at H2, because H1 is the page title. 
+                tag = "H" + str(level + 1) if level <= 5 else "H6"
                 html_str += f'\n{indent}<DT><{tag}>{item["title"]}</{tag}>'
                 html_str += f"\n{indent}<DL><p>"
                 html_str = traverse_dict(item["children"], html_str, level + 1)
